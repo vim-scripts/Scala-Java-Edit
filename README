@@ -1,0 +1,38 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3512
+
+Then press ,g while cursor is on a class name word and
+the file should open (you'll need the
+source files and the path to have been set already).
+
+Place cursor over a word and attempt to find a scala file with the give name.
+
+The following matches are attempted:
+ 1) Is the cursor over a full package classname (e.g., scala.collection.Map)
+    If so is it over the classname (Map)
+      If so open it.
+    Or it is over on of the package names (collection)
+      If so open the directory (scala/collection).
+ 2) Is there a local file with the name <cword>.scala
+    If so open it.
+ 3) Is there an import statement with that file identified explicitly
+    (e.g., scala.collection.Map for Map).
+    If so open it.
+    If "locate" is enabled, search for file scala/collection/Map.scala (in this
+    example). If found, open it.
+ 4) Is it a file located in "$JAVA_HOME/src/scala/lang/" directory
+    If so open it.
+ 5) Is there an import statement with that file identified implicitly.
+    (e.g., scala.collection.* for Map).
+    If so open it. 
+    If "locate" is enabled, search for file scala/collection/Map.scala (in this
+    example). If found, open it.
+ 6) Its possible we are in a junit directory or is some parallel directory
+    structure so that our current file has the same package statement
+    value as some source files in a different directory. This attempt takes
+    the package statement value, creates a directory plus scala file from
+    it and first looks through the scala path and if not found there,
+    does a "locate" searching for the file.
+
+Also, can be configured to work with Java files (or with both Scala
+and Java source files).
+
